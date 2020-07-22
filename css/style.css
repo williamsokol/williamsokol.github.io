@@ -1,15 +1,32 @@
 *{
-    color: black;
+
+    color: white;
     font-family: Century Gothic ;
 }
 
 header{
-    margin: -10px;
+    
     background-image: url(../Background.jpg);
     height: 100vh;
+    
     background-size: cover;
     background-position: center;
 }
+
+body{
+    margin: 0px 10% 0px 10%;
+    background-color: #292929;
+    background-image: url(../realBackground.png);
+}
+
+hr{
+    border-color: rgba(0, 0, 0, 0);
+    border-top: 2px solid #000000; 
+    margin: 0;
+    
+}
+
+
 
 ul{
     margin-top: 25px;
@@ -58,3 +75,52 @@ ul li a:hover{
     color: #fff;
     font-size: 70px;
 }
+
+.things{
+    
+    background-color:  rgb(255, 255, 255);
+    padding: 5%;
+    overflow: hidden;
+    
+   
+}
+
+.spacer h1{
+    
+    background-color: rgb(150, 231, 241);
+    text-align: center;
+    margin: 0%;
+    padding: 1;
+}
+
+.spacer {
+    
+     
+    background-color: white;
+    float: left;
+    height: 30em;
+    width: 45%;
+    margin: 2%;
+
+    
+    
+    
+    /*background-color: blue;   
+    */
+    
+}
+.spacer *    {
+    color: black;
+    padding: 5px;
+}
+.box {
+    border: 2px solid #000000;
+    padding: 0%;
+    height: 30em;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+
+
