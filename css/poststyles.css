@@ -1,0 +1,10 @@
+*{
+    overflow-x: hidden;
+    width: 95%;
+    margin: auto;  
+}
+
+h1 {
+    font-size: 1.7em;
+    text-align: center;
+}
