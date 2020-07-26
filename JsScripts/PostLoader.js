@@ -17,7 +17,7 @@ function postDataArray(postlist,posttimes){
         
         b = b.posttimes;
         c = a > b ? -1 : a < b ? 1 : 0;
-        //console.log(a,"|",b,a>b);
+        console.log(a,"|",b,a>b);
         return c; 
     };
 
@@ -71,18 +71,19 @@ function fetchHeaders(url) {
         
         if (this.readyState == 4 && this.status == 200) {
             
+            commitData = JSON.parse(this.response);
             
-            time = xhttp.getResponseHeader("last-modified");
-            console.log(time);
+            time = commitData[0].commit.committer.date;
+            //console.log(commitData[0].commit.committer.date > commitData[1].commit.committer.date);
                
         }
     };
     
     
-    xhttp.open("HEAD", "https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/logpost/" + url, false);
+    xhttp.open("GET", "https://api.github.com/repos/williamsokol/williamsokol.github.io/commits?path=logpost/" + url, false);
     xhttp.send();
     
-    //return(time);
+    return(time);
     
     
 }
