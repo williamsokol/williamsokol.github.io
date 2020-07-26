@@ -36,27 +36,47 @@ function loadDoc() {
 
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+        
+            // gets the entire html file of the folder logpost in this case and labels it thing
+            thing = this.responseText
+            searchFor = /.html</g
+            a=0;
+            b=0;
+            var str = "";
+            
 
-            
-            j = JSON.parse( this.response);
-            //console.log(j);
-            
-            for (i=0;i<j.length;i++){
+            // greps response lines for '.html<' and then backs up leter by letter till you got the full file name
+            while ((dothtmls = searchFor.exec(thing)) != null ){
+
+                str = "";
+                //console.log(dothtmls.index);
                 
-                postlist[i] = j[i].name;
-                posttimes[i]  = fetchHeaders(postlist[i]);
+                a = dothtmls.index;
 
-                //console.log(xhttp.getResponseHeader('last-modified'));
-            }
-           
-            
-            console.log(postlist,posttimes);
+                while (thing[a]  != '>' ){
+                    a--;
+                }
+                a++;
+                while(thing[a] != '<'){
+                    str = str + thing[a];
+                    a++;
+                }
+                
+
+                
+                posttimes[b]  = fetchHeaders(str);
+                //console.log(fetchHeader(str));
+                postlist[b++]  = str;
+               
+                
+                
+            } 
             data = postDataArray(postlist,posttimes);
-           
+            
                              
         }
     };
-    xhttp.open("GET", "https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/logpost", false);
+    xhttp.open("GET", "logpost/", false);
     xhttp.send();
     //console.log(data); 
     return(data);
@@ -64,25 +84,21 @@ function loadDoc() {
 
 function fetchHeaders(url) {
     
-    var time;
     var xhttp = new XMLHttpRequest();
-    
     xhttp.onreadystatechange = function() {
-        
         if (this.readyState == 4 && this.status == 200) {
             
             
             time = xhttp.getResponseHeader("last-modified");
-            console.log(time);
+            //console.log(xhttp.getResponseHeader("last-modified"));
                
         }
     };
     
-    
-    xhttp.open("HEAD", "https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/logpost/" + url, false);
+    xhttp.open("HEAD", "logpost/" + url, false);
     xhttp.send();
     
-    //return(time);
+    return(time);
     
     
 }
