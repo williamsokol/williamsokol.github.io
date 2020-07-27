@@ -28,16 +28,16 @@
             thing = loadDoc();
             
             for(i=0;i<thing.length;i++){
-                console.log(thing[i].postlist);
-                makeNewPost(thing[i].postlist);
+                console.log(thing[i].posttimes);
+                makeNewPost(thing[i].postlist,thing[i].posttimes);
             }
         }
 
-        function makeNewPost(postname){
+        function makeNewPost(postname,posttime){
             
             var newpost = document.createElement("div");
             newpost.classList.add("spacer");
-            newpost.innerHTML = '<div class="box"><h1 >Log</h1><hr/><iframe src="logpost/'+ postname +'" ></iframe></div>';
+            newpost.innerHTML = '<div class="box"><h1 >'+ posttime +'<a href="logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="logpost/'+ postname +'" ></iframe></div>';
             document.getElementById("postList").appendChild(newpost);
         }
 

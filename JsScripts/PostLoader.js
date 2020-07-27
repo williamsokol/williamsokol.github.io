@@ -1,3 +1,5 @@
+var data;
+
 function postData (postlist,posttimes){
     this.postlist = postlist;
     this.posttimes = posttimes;
@@ -14,46 +16,62 @@ function postDataArray(postlist,posttimes){
     // organzies the array by date lastmodefiyed (posttimes)
     sortByDateDesc = function (a, b) {
         a = a.posttimes;
-        
         b = b.posttimes;
+
         c = a > b ? -1 : a < b ? 1 : 0;
-        console.log(a,"|",b,a>b);
+        //console.log(a,"|",b,a>b);
         return c; 
     };
-
     
     thing.sort(sortByDateDesc);
     
-    return thing
-    
+    return thing  
+}
+
+function trimDates(dates){
+
+    for(i=0;i<dates.length;i++){
+        str = "";
+        a = 0;
+
+        while(dates[i].posttimes[a] != 'T'){
+            str = str + dates[i].posttimes[a];
+            
+            a++;
+        }
+        data[i].posttimes = str;
+    }
+    console.log(data);
+    return str;
 }
 
 function loadDoc() {
     var xhttp = new XMLHttpRequest();
     var postlist = new Array();
     var posttimes = new Array();
-    var data;
+    
 
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
-            
+      
             j = JSON.parse( this.response);
             //console.log(j);
             
             for (i=0;i<j.length;i++){
                 
                 postlist[i] = j[i].name;
-                posttimes[i]  = fetchHeaders(postlist[i]);
+                posttimes[i]  = fetchDate(postlist[i]);
 
                 //console.log(xhttp.getResponseHeader('last-modified'));
             }
            
-            
             console.log(postlist,posttimes);
-            data = postDataArray(postlist,posttimes);
+            
+            data = postDataArray(postlist,posttimes);               //order the posts based on date
+            
+            //console.log(data.posttimes + " tihng");
+            data.posttimes = trimDates(data);             //just to make dates look good when displayed on website
            
-                             
         }
     };
     xhttp.open("GET", "https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/logpost", false);
@@ -62,8 +80,8 @@ function loadDoc() {
     return(data);
 }
 
-function fetchHeaders(url) {
-    
+function fetchDate(url) {
+
     var time;
     var xhttp = new XMLHttpRequest();
     
@@ -79,12 +97,12 @@ function fetchHeaders(url) {
         }
     };
     
-    
     xhttp.open("GET", "https://api.github.com/repos/williamsokol/williamsokol.github.io/commits?path=logpost/" + url, false);
     xhttp.send();
     
     return(time);
-    
-    
 }
+
+
+
 
