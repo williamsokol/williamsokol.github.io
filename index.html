@@ -3,6 +3,7 @@
 	<head>
 		<title>William's Website</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script type="text/javascript" src="JsScripts/PostLoader.js"></script>
 	</head>
 	<body>
 			
@@ -28,35 +29,58 @@
 		</header>
 
 		<div class="things">
-
-			
 			<div class="spacer">
-				<div class="box">
-
-				<h1 ><span>Latest Thing!</span><a href="logpost/post.html">go to page</a></h1>
-				<hr/>
-
-				
-					<iframe src="logpost/post.html" ></iframe>
-					
-				
-
+				<div class="box" id="LatestPost">
 				</div>
 			</div>
 
 			<div class="spacer">
-				<div class="box">
-
-				<h1 >More Things!</h1>
-				<hr/>
-
-					<iframe src="logpost/post.html" ></iframe>
-
+				<div class="box" id="RandPost">
 				</div>
 			</div>
-
 		</div>
 
+
+
 		<footer>footer</footer>
+
+
+		<script>
+        var i;
+        var htmlstring;
+        var dothtmls;
+        thing = new Array;
+        
+
+
+        function createList()
+        {
+            thing = loadDoc();
+            r = Math.floor(Math.random() * thing.length);
+            
+			console.log(r);
+			DisplayPost(thing[0].postlist,thing[0].posttimes);
+			RandomPost(thing[r].postlist)
+        }
+
+        function DisplayPost(postname,posttime){
+            
+            var newPost = document.getElementById("LatestPost");
+			
+            
+            newPost.innerHTML = '<h1 >Latest Thing!<a href="logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="logpost/'+ postname +'" ></iframe>';
+        }
+		function RandomPost(postname){
+            
+           
+			var randPost = document.getElementById("RandPost");
+            
+            randPost.innerHTML = '<h1 >Random Thing!<a href="logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="logpost/'+ postname +'" ></iframe>';
+        }
+
+        requestAnimationFrame(createList);
+    </script>
+
+
 	</body>
 </html>

@@ -13,6 +13,11 @@ header{
     background-position: center;
 }
 
+.simpleTitle{
+    font-size:   7em;
+    text-align: center;
+}
+
 body{
     margin: 0px 10% 0px 10%;
     background-color: #292929;
@@ -81,14 +86,9 @@ ul li a:hover{
     
     background-color:  rgb(255, 255, 255);
     padding: 5%;
-    overflow: hidden;
-    
-   
+    overflow: hidden; 
 }
-
-
-.spacer h1 a{
-    
+.spacer h1 a{  
     font-size: 15px;
     position: relative;
 
@@ -108,9 +108,7 @@ ul li a:hover{
     font-size: 20px;
     
 }
-
 .spacer h1 div{
-    
     padding-right: 2%;
 }
 .spacer h1{
@@ -122,10 +120,7 @@ ul li a:hover{
     margin: 0%;
     padding: 20;
 }
-
 .spacer {
-    
-     
     background-color: white;
     float: left;
     height: 30em;
@@ -134,7 +129,6 @@ ul li a:hover{
 }
 .spacer *    {
     color: black;
-   
 }
 .box {
     border: 2px solid #000000;
@@ -142,18 +136,44 @@ ul li a:hover{
     margin: 0%;
     height: 30em;
 }
-
 iframe{
     border: none;
     display: block;
     width: 100%;
     height: 90%;
     padding: 0%;
-
     overflow-x: hidden;
 }
 
+.Backbtn{
+    
+    line-height: 100px;
+    text-decoration: none;
+    font-size:  3em;
+    color: red;
+    border: 1px solid transparent;
+    transition: .6s ease;
 
+    width: 25%;
+    margin-bottom: 30px;
+    display: inline-block;
+    
+}
+
+.Backbtn:hover{
+    
+    color: black;
+    font-size: 4em;
+    border: 5px solid red;
+    
+    
+}
+
+.BackbtnDiv{
+    margin: auto;
+    background-color: white;
+    text-align: center;
+}
 
 
 
