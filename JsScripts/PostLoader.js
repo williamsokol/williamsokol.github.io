@@ -45,10 +45,11 @@ function trimDates(dates){
     return str;
 }
 
-function loadDoc() {
+function loadDoc(input) {
     var xhttp = new XMLHttpRequest();
     var postlist = new Array();
     var posttimes = new Array();
+
     
 
     xhttp.onreadystatechange = function() {
@@ -60,7 +61,7 @@ function loadDoc() {
             for (i=0;i<j.length;i++){
                 
                 postlist[i] = j[i].name;
-                posttimes[i]  = fetchDate(postlist[i]);
+                posttimes[i]  = fetchDate(input,postlist[i]);
 
                 //console.log(xhttp.getResponseHeader('last-modified'));
             }
@@ -74,13 +75,13 @@ function loadDoc() {
            
         }
     };
-    xhttp.open("GET", "https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/logpost", false);
+    xhttp.open("GET", "https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/" + input, false);
     xhttp.send();
     //console.log(data); 
     return(data);
 }
 
-function fetchDate(url) {
+function fetchDate(input ,url) {
 
     var time;
     var xhttp = new XMLHttpRequest();
@@ -97,7 +98,7 @@ function fetchDate(url) {
         }
     };
     
-    xhttp.open("GET", "https://api.github.com/repos/williamsokol/williamsokol.github.io/commits?path=logpost/" + url, false);
+    xhttp.open("GET", "https://api.github.com/repos/williamsokol/williamsokol.github.io/commits?path="+ input +"/" + url, false);
     xhttp.send();
     
     return(time);

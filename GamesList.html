@@ -20,6 +20,7 @@
     </div>
 
     <script>
+        var refFile = "Games"
         var i;
         var htmlstring;
         var dothtmls;
@@ -29,7 +30,7 @@
 
         function createList()
         {
-            thing = loadDoc();
+            thing = loadDoc(refFile);
             
             for(i=0;i<thing.length;i++){
                 console.log(thing[i].posttimes);
@@ -41,7 +42,7 @@
             
             var newpost = document.createElement("div");
             newpost.classList.add("spacer");
-            newpost.innerHTML = '<div class="box"><h1 >'+ posttime +'<a href="logpost/'+ postname +'">go to page</a></h1><hr/><img width="400" src="logo.jpg"></div>';
+            newpost.innerHTML = '<div class="box"><h1 >'+posttime+'<a href="'+refFile+'/'+postname+'">go to page</a></h1><hr/><img class="coverimg" src="Games/'+postname+'/image.jpg"></div>';
             document.getElementById("gameList").appendChild(newpost);
         }
 
