@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | New Unity Project</title>
+    <title>Unity WebGL Player | Celly The Cell</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="stylesheet" href="../../css/GamePageStyle.css">
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
+      //                             NOTE: You can copy and paste everything in this file but this script for the formatting
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/game1.json", {onProgress: UnityProgress});
     </script>
   </head>
@@ -18,8 +19,11 @@
       <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-        <div class="title">New Unity Project</div>
+        <div class="title">Celly The Cell</div>
       </div>
+      <a href="../../GamesList.html" class="Backbtn"> Go Back </a>
     </div>
   </body>
 </html>
+
+var unityInstance = UnityLoader.instantiate("unityContainer", "Build/game1.json", {onProgress: UnityProgress});
