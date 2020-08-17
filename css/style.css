@@ -83,7 +83,7 @@ ul li a:hover{
 }
 
 .things{
-    
+    color: #000;
     background-color:  rgb(255, 255, 255);
     padding: 5%;
     overflow: hidden; 
