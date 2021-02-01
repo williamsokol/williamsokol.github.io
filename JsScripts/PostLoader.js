@@ -23,6 +23,7 @@ function postDataArray(postlist,posttimes){
         return c; 
     };
     
+    // sort applies the sortByDateDesc to the array "thing"
     thing.sort(sortByDateDesc);
     
     return thing  
