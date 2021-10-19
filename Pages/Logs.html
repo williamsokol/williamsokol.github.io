@@ -1,7 +1,7 @@
 <!Doctype html>
 <html>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="JsScripts/PostLoader.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script type="text/javascript" src="/JsScripts/PostLoader.js"></script>
 <head>
 </head>
 <body>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="BackbtnDiv">
-        <a href="index.html" class="Backbtn"> Go Back </a>
+        <a href="/index.html" class="Backbtn"> Go Back </a>
     </div>
 
     <script>
@@ -41,7 +41,7 @@
             
             var newpost = document.createElement("div");
             newpost.classList.add("spacer");
-            newpost.innerHTML = '<div class="box"><h1 >'+ posttime +'<a href="logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="logpost/'+ postname +'" ></iframe></div>';
+            newpost.innerHTML = '<div class="box"><h1 >'+ posttime +'<a href="/logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="/logpost/'+ postname +'" ></iframe></div>';
             document.getElementById("postList").appendChild(newpost);
         }
 

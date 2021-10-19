@@ -1,7 +1,7 @@
 <!Doctype html>
 <html>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="JsScripts/PostLoader.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script type="text/javascript" src="/JsScripts/PostLoader.js"></script>
 <head>
 </head>
 <body>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="BackbtnDiv">
-        <a href="index.html" class="Backbtn"> Go Back </a>
+        <a href="/index.html" class="Backbtn"> Go Back </a>
     </div>
 
     <script>
@@ -42,7 +42,7 @@
             
             var newpost = document.createElement("div");
             newpost.classList.add("spacer");
-            newpost.innerHTML = '<div class="box"><h1 >'+posttime+'<a href="'+refFile+'/'+postname+'">go to page</a></h1><hr/><img class="coverimg" src="Games/'+postname+'/image.jpg"></div>';
+            newpost.innerHTML = '<div class="box"><h1 >'+posttime+'<a href="/'+refFile+'/'+postname+'">go to page</a></h1><hr/><img class="coverimg" src="/Games/'+postname+'/image.jpg"></div>';
             document.getElementById("gameList").appendChild(newpost);
         }
 
