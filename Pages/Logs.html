@@ -1,0 +1,54 @@
+<!Doctype html>
+<html>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="JsScripts/PostLoader.js"></script>
+<head>
+</head>
+<body>
+    
+    <div>
+        <h1 class="simpleTitle">List of Logs:</h1>
+    </div>
+    
+
+    <div class="things" id="postList">
+
+    </div>
+
+    <div class="BackbtnDiv">
+        <a href="index.html" class="Backbtn"> Go Back </a>
+    </div>
+
+    <script>
+        var i;
+        var htmlstring;
+        var dothtmls;
+        thing = new Array;
+        
+
+
+        function createList()
+        {
+            thing = loadDoc("logpost");
+            
+            for(i=0;i<thing.length;i++){
+                console.log(thing[i].posttimes);
+                makeNewPost(thing[i].postlist,thing[i].posttimes);
+            }
+        }
+
+        function makeNewPost(postname,posttime){
+            
+            var newpost = document.createElement("div");
+            newpost.classList.add("spacer");
+            newpost.innerHTML = '<div class="box"><h1 >'+ posttime +'<a href="logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="logpost/'+ postname +'" ></iframe></div>';
+            document.getElementById("postList").appendChild(newpost);
+        }
+
+        
+
+        requestAnimationFrame(createList);
+    </script>
+
+</body>
+</html>
