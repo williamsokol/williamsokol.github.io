@@ -1,8 +1,10 @@
 <!Doctype html>
 <html>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <script type="text/javascript" src="/JsScripts/PostLoader.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script type="text/javascript" src="/JsScripts/DriveArticles.js"></script>
 <head>
+    
 </head>
 <body>
     
@@ -19,34 +21,43 @@
         <a href="/index.html" class="Backbtn"> Go Back </a>
     </div>
 
+    
     <script>
-        var i;
         var htmlstring;
         var dothtmls;
-        thing = new Array;
+        var files = new Array();
+        var i;
         
-
-
-        function createList()
+        
+        
+        function createList(response)
         {
-            thing = loadDoc("logpost");
             
-            for(i=0;i<thing.length;i++){
-                console.log(thing[i].posttimes);
-                makeNewPost(thing[i].postlist,thing[i].posttimes);
+            //files = execute();
+            console.log(GoogleAuth);
+            
+            for(i=0;i<response.result.files.length;i++){
+                //console.log(response.result.files[i]);
+                makeNewPost(response.result.files[i].id, response.result.files[i].name);
             }
         }
 
-        function makeNewPost(postname,posttime){
-            
+        function makeNewPost(id,name){
+           
+            //var id = "1K7UWUyOO2GYbf3OGDfezXG5IT-WEqMwLnbd-GuOsc9I";
+            var postURL = "https://docs.google.com/document/d/"+id+"/pub?embedded=true"
             var newpost = document.createElement("div");
+        
             newpost.classList.add("spacer");
-            newpost.innerHTML = '<div class="box"><h1 >'+ posttime +'<a href="/logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="/logpost/'+ postname +'" ></iframe></div>';
+            newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href='+postURL+'>go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'></iframe></div>';
+
+
             document.getElementById("postList").appendChild(newpost);
+
+            
         }
 
-        
-
+       
         requestAnimationFrame(createList);
     </script>
 
