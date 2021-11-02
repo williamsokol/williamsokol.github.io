@@ -13,7 +13,7 @@ var GoogleAuth;
 
 function initClient() {
     GoogleAuth = gapi.client.init({
-      'apiKey': 'AIzaSyDZJMC3J8GLuXBslOWaewHV3We5cIprCDM',
+      //'apiKey': 'AIzaSyDZJMC3J8GLuXBslOWaewHV3We5cIprCDM',
       'clientId': '419474436140-1d04mic934dqd0vjakr75be1kukotngh.apps.googleusercontent.com',
       'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
       'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
