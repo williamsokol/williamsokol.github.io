@@ -45,11 +45,11 @@
         function makeNewPost(id,name){
            
             //var id = "1K7UWUyOO2GYbf3OGDfezXG5IT-WEqMwLnbd-GuOsc9I";
-            var postURL = "https://docs.google.com/document/d/"+id+"/pub?embedded=true"
+            var postURL = "https://docs.google.com/document/d/"+id+"/pub"
             var newpost = document.createElement("div");
         
             newpost.classList.add("spacer");
-            newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href='+postURL+' >go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'></iframe></div>';
+            newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href='+postURL+' >go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
 
 
             document.getElementById("postList").appendChild(newpost);
