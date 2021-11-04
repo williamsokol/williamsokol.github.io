@@ -28,14 +28,21 @@
         var files = new Array();
         var i;
         
-        
+        function initArticles() {
+            return gapi.client.drive.files.list({
+                'q' : "'1STx7_sT-bQI9v_ZH3ui6ksc6Lc0VbkQE' in parents",
+                "fields" : "files/webViewLink , files/name, files/id"
+            })
+            .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                //console.log("Response", response.result.files);
+                createList(response)
+            },
+            function(err) { console.error("Execute error", err); });
+        }
         
         function createList(response)
-        {
-            
-            //files = execute();
-            console.log(GoogleAuth);
-            
+        {         
             for(i=0;i<response.result.files.length;i++){
                 //console.log(response.result.files[i]);
                 makeNewPost(response.result.files[i].id, response.result.files[i].name);
@@ -49,7 +56,7 @@
             var newpost = document.createElement("div");
         
             newpost.classList.add("spacer");
-            newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href='+postURL+' >go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
+            newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href= "javascript:fetchHTMLPage();" >go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
 
 
             document.getElementById("postList").appendChild(newpost);
@@ -58,7 +65,7 @@
         }
 
        
-        requestAnimationFrame(createList);
+        //requestAnimationFrame(createList);
     </script>
 
 </body>

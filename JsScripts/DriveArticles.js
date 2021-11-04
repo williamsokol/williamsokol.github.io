@@ -16,7 +16,7 @@ function initClient() {
       //'apiKey': 'AIzaSyDZJMC3J8GLuXBslOWaewHV3We5cIprCDM',
       'clientId': '419474436140-1d04mic934dqd0vjakr75be1kukotngh.apps.googleusercontent.com',
       'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
-      'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
+      'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest', 'https://script.googleapis.com/$discovery/rest?version=v1']
     }).then(function () {                         //I have no idea what this bit on the end is doing, the code works without it.
         
         gapi.auth2.getAuthInstance()
@@ -28,7 +28,7 @@ function initClient() {
         console.log(GoogleAuth);
         //GoogleAuth.isSignedIn.listen(signinChanged);
         //console.log(GoogleAuth);
-        execute();
+        initArticles();
     });
     
     console.log("initiation complete");
@@ -50,17 +50,51 @@ function execute() {
         },
         function(err) { console.error("Execute error", err); });
 }
-// function getThing(response)
-// {
+function fetchHTMLPage(){
+    //console.log(id);
+    gapi.client.script.scripts.run({
+        'scriptId': "AKfycbycGRSXL5kupueeofpCHQy6JwWU2HWuprFeSkG9NcZkTksqkZPpcHd0tg2Ik0fbDBXIcg",
+        'resource': {
+        'function': 'getGoogleDocumentAsHTML',
+        'parameters':[
+          "1Fbl96fqcMfbzqogPqCJkYUNndUF5935EUGMG4hNhTPk"
+        ]
+        }
+      }).then(function(response){
+          console.log(response.result);
+          turnHTMLToUrl(response.result.response.result);
+      });
+}
 
-//     var newPost = document.getElementById("pages");   
-//     for (var i=0; i<response.result.files.length; i++){
-//         var id = response.result.files[i].id;
-//         var link =  "https://docs.google.com/document/d/"+id+"/pub";
-//         console.log("https://docs.google.com/document/d/"+id+"/pub", id);
+function turnHTMLToUrl(html) {
+    let doc = document.implementation.createHTMLDocument("New Document");
+    
+    doc.documentElement.innerHTML =  html
 
-//         newPost.innerHTML += '<a href="'+link+'"> <br/>stuff </a>';
-//     }
-// }
+    console.log(doc.documentURI);
+    changeCss(doc);
+
+    url = URL.createObjectURL(new Blob([doc.documentElement.innerHTML], {type: "text/html"}));
+    // const link = document.createElement('a');
+    // link.href = url;
+    // link.innerText = 'Open the array URL';
+    window.location.href = url;
+
+    document.body.appendChild(link);    
+}
+
+function changeCss(doc) {
+    // do it by adding a css file to script
+    //get css file
+    var link = doc.createElement( "link" );
+    link.href = "http://localhost:8000/style.css";
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    // add css to doc
+    doc.getElementsByTagName( "body" )[0].appendChild( link );
+
+    //just manually change things
+    //doc.body.style.background = "red"   
+}
 
 
