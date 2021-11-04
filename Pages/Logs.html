@@ -28,6 +28,9 @@
         var files = new Array();
         var i;
         
+        document.addEventListener("googleLoggedin", function(e){
+            initArticles();
+        });
         function initArticles() {
             return gapi.client.drive.files.list({
                 'q' : "'1STx7_sT-bQI9v_ZH3ui6ksc6Lc0VbkQE' in parents",
@@ -56,12 +59,19 @@
             var newpost = document.createElement("div");
         
             newpost.classList.add("spacer");
-            newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href= "javascript:fetchHTMLPage();" >go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
-
-
-            document.getElementById("postList").appendChild(newpost);
-
+            //newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href="javascript:fetchHTMLPage(`'+id+'`);">go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
+            newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href="javascript:GoToPage(`'+id+'`,`'+name+'`)">go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
             
+            document.getElementById("postList").appendChild(newpost);
+            
+            
+        }
+        
+        function GoToPage(id,name){
+            
+            sessionStorage.setItem("SelectedArticleId", id);
+            sessionStorage.setItem("SelectedArticleName", name);
+            window.location.href = "/logpost/MainPostHolder.html";
         }
 
        

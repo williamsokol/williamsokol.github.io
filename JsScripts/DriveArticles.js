@@ -7,7 +7,7 @@
 // document.head.appendChild(script);
 // console.log("test");
 
-gapi.load('client', initClient);
+gapi.load('client', initClient)
 
 var GoogleAuth;
 
@@ -19,16 +19,9 @@ function initClient() {
       'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest', 'https://script.googleapis.com/$discovery/rest?version=v1']
     }).then(function () {                         //I have no idea what this bit on the end is doing, the code works without it.
         
-        gapi.auth2.getAuthInstance()
-        .then(instance => {
-            GoogleAuth = instance
-        }, err => {
-            console.log(err)
-        })
-        console.log(GoogleAuth);
-        //GoogleAuth.isSignedIn.listen(signinChanged);
-        //console.log(GoogleAuth);
-        initArticles();
+        const event  = new CustomEvent('googleLoggedin');
+        document.dispatchEvent(event);
+    
     });
     
     console.log("initiation complete");
@@ -50,14 +43,14 @@ function execute() {
         },
         function(err) { console.error("Execute error", err); });
 }
-function fetchHTMLPage(){
+function fetchHTMLPage(id){
     //console.log(id);
     gapi.client.script.scripts.run({
         'scriptId': "AKfycbycGRSXL5kupueeofpCHQy6JwWU2HWuprFeSkG9NcZkTksqkZPpcHd0tg2Ik0fbDBXIcg",
         'resource': {
         'function': 'getGoogleDocumentAsHTML',
         'parameters':[
-          "1Fbl96fqcMfbzqogPqCJkYUNndUF5935EUGMG4hNhTPk"
+          id
         ]
         }
       }).then(function(response){
@@ -78,23 +71,25 @@ function turnHTMLToUrl(html) {
     // const link = document.createElement('a');
     // link.href = url;
     // link.innerText = 'Open the array URL';
-    window.location.href = url;
-
-    document.body.appendChild(link);    
+    //document.body.appendChild(link); 
+    const event  = new CustomEvent('loadedArticle');
+    document.dispatchEvent(event);   
+    
+    
+    //window.location.href = url;
+    console.log("loaded article");
 }
 
 function changeCss(doc) {
     // do it by adding a css file to script
     //get css file
     var link = doc.createElement( "link" );
-    link.href = "http://localhost:8000/style.css";
+    link.href = "http://localhost:8000/css/Articles.css";
     link.rel = "stylesheet";
     link.type = "text/css";
     // add css to doc
-    doc.getElementsByTagName( "body" )[0].appendChild( link );
+    doc.getElementsByTagName( "head" )[0].appendChild( link );
 
-    //just manually change things
-    //doc.body.style.background = "red"   
 }
 
 

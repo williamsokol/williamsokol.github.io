@@ -1,18 +1,48 @@
 <!doctype html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/css/Articles.css" id="style">
-    <!--<script type="text/javascript" src="../JsScripts/SetClass.js"></script>
-    -->
+    <link rel="stylesheet" type="text/css" href="/css/openedPost.css" id="style">
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script type="text/javascript" src="/JsScripts/DriveArticles.js" ></script>
+
+    
   
 </head>
 <body>
-    <center>
-        <iframe class="center" id="myFrame" width='50%' height='1000px' src="https://docs.google.com/document/d/1K7UWUyOO2GYbf3OGDfezXG5IT-WEqMwLnbd-GuOsc9I/pub?embedded=true"  frameBorder="0" style="border: 0; "></iframe>
-    </center>
+   
     <div>
+        <h1 id="title">website in progress!</h1>
+        <!--give a little space between tile and content-->
+        <br/><br/><br/><br/><br/>
+        
+        <iframe class="center" id="myFrame" width='50%' height='100%' src= ""  frameBorder="0" style="border: 0; ">asd</iframe>
+
         <!--footer/backbtn-->
         <a href="/Pages/Logs.html" class="Backbtn"> Go Back </a>
     </div>
+
+    <script>
+        // little formatting stuff
+        var windowHeight = window.innerWidth*.55>window.innerHeight? window.innerHeight: window.innerWidth*.55
+        document.getElementById("myFrame").height = windowHeight;
+
+        document.getElementById("title").textContent = sessionStorage.getItem("SelectedArticleName") ;
+    </script>
+
+    <script>
+
+        var id = sessionStorage.getItem("SelectedArticleId");
+        console.log(id);
+        document.addEventListener('googleLoggedin', function(e){
+            fetchHTMLPage(id);
+        });
+
+        document.addEventListener('loadedArticle', function(e){
+            
+            const iframe = document.getElementById('myFrame');
+            iframe.src = url
+        });
+    </script>
 </body>
 </html>
