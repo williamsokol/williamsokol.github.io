@@ -84,7 +84,7 @@ function changeCss(doc) {
     // do it by adding a css file to script
     //get css file
     var link = doc.createElement( "link" );
-    link.href = "http://localhost:8000/css/Articles.css";
+    link.href = "https://williamsokol.github.io/css/Articles.css";
     link.rel = "stylesheet";
     link.type = "text/css";
     // add css to doc
