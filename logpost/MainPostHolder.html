@@ -26,16 +26,19 @@
         // little formatting stuff
         var windowHeight = window.innerWidth*.55>window.innerHeight? window.innerHeight: window.innerWidth*.55
         document.getElementById("myFrame").height = windowHeight;
+        
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        //console.log(params);
 
-        document.getElementById("title").textContent = sessionStorage.getItem("SelectedArticleName") ;
+        document.getElementById("title").textContent = params.name ;
+
     </script>
 
     <script>
 
-        var id = sessionStorage.getItem("SelectedArticleId");
-        console.log(id);
         document.addEventListener('googleLoggedin', function(e){
-            fetchHTMLPage(id);
+            fetchHTMLPage(params.id);
         });
 
         document.addEventListener('loadedArticle', function(e){

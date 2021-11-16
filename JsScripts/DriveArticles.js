@@ -70,7 +70,7 @@ function execute() {
         .then(function(response) {
         // Handle the results here (response.result has the parsed body).
         createList(response)
-        console.log("Response", response);
+        //console.log("Response", response);
         },
         function(err) { console.error("Execute error", err); });
 }
@@ -95,7 +95,7 @@ function turnHTMLToUrl(html) {
     
     doc.documentElement.innerHTML =  html
 
-    console.log(doc.documentURI);
+    //console.log(doc.documentURI);
     changeCss(doc);
 
     url = URL.createObjectURL(new Blob([doc.documentElement.innerHTML], {type: "text/html"}));
