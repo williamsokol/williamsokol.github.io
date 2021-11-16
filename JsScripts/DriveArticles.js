@@ -7,15 +7,50 @@
 // document.head.appendChild(script);
 // console.log("test");
 
-gapi.load('client', initClient)
+
+
+get_access_token_using_saved_refresh_token();
+gapi.load('client', initClient);
 
 var GoogleAuth;
+
+function get_access_token_using_saved_refresh_token() {
+    // from the oauth playground
+    const refresh_token = "1//04AaPaGlp2XBgCgYIARAAGAQSNwF-L9IrvDzkHPPpX2-D9FVLPSxY_6p0ulEzldwdqWprNzuoTL6bxHCcoUs5tkJ70WdkzrcDnQA";
+    // from the API console
+    const client_id = "902066689522-hk74eva9n72bg2rgd2eq5mialk3q6o42.apps.googleusercontent.com";
+    // from the API console
+    const client_secret = "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";
+    // from https://developers.google.com/identity/protocols/OAuth2WebServer#offline
+    const refresh_url = "https://www.googleapis.com/oauth2/v4/token";
+
+    const post_body = `grant_type=refresh_token&client_id=${encodeURIComponent(client_id)}&client_secret=${encodeURIComponent(client_secret)}&refresh_token=${encodeURIComponent(refresh_token)}`;
+
+    let refresh_request = {
+        body: post_body,
+        method: "POST",
+        headers: new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        })
+    }
+
+    // post to the refresh endpoint, parse the json response and use the access token to call files.list
+    fetch(refresh_url, refresh_request).then( response => {
+            return(response.json());
+        }).then( response_json =>  {
+            console.log(response_json);
+            gapi.auth.setToken({
+                access_token: response_json.access_token
+            });
+            //files_list(response_json.access_token);
+    });
+}
 
 function initClient() {
     GoogleAuth = gapi.client.init({
       //'apiKey': 'AIzaSyDZJMC3J8GLuXBslOWaewHV3We5cIprCDM',
       'clientId': '419474436140-1d04mic934dqd0vjakr75be1kukotngh.apps.googleusercontent.com',
-      'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+      //'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
       'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest', 'https://script.googleapis.com/$discovery/rest?version=v1']
     }).then(function () {                         //I have no idea what this bit on the end is doing, the code works without it.
         
@@ -26,10 +61,6 @@ function initClient() {
     
     console.log("initiation complete");
 }
-
-// gapi.load("client:auth2", function() {
-// gapi.auth2.init({client_id: "419474436140-1d04mic934dqd0vjakr75be1kukotngh.apps.googleusercontent.com"});
-// });
 
 function execute() {
     return gapi.client.drive.files.list({
