@@ -10,13 +10,17 @@
   
 </head>
 <body>
-   
+    <script type="text/javascript">
+        function resizeIframe(iframe) {
+          iframe.height = iframe.contentWindow.document.body.scrollHeight*1.01 + "px";
+        }
+    </script>  
     <div>
         <h1 id="title">website in progress!</h1>
         <!--give a little space between tile and content-->
         <br/><br/><br/><br/><br/>
         
-        <iframe class="center" id="myFrame" onload="iframeLoaded()" width='50%'  src= ""  frameBorder="0" style="border: 0; ">asd</iframe>
+        <iframe class="center" id="myFrame" onload="resizeIframe(this)" width='50%'  src= ""  frameBorder="0" style="border: 0; ">asd</iframe>
 
         <!--footer/backbtn-->
         <a href="/Pages/Logs.html" class="Backbtn"> Go Back </a>
@@ -24,16 +28,7 @@
 
     <script>
         // little formatting stuff
-        function iframeLoaded(){
-            var iFrameID = document.getElementById('myFrame');
-            if(iFrameID) {
-                    // here you can make the height, I delete it first, then I make it again
-                    iFrameID.height = "";
-                    iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight +100+ "px";
-            }   
-        }
-        // var windowHeight = window.innerWidth*.55>window.innerHeight? window.innerHeight: window.innerWidth*.55
-        // document.getElementById("myFrame").height = windowHeight;
+       
         
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
