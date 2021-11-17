@@ -23,22 +23,19 @@
 
     
     <script>
-        var htmlstring;
-        var dothtmls;
-        var files = new Array();
-        var i;
         
         document.addEventListener("googleLoggedin", function(e){
-            initArticles();
+            var test = initArticles();
         });
+
         function initArticles() {
-            return gapi.client.drive.files.list({
+            gapi.client.drive.files.list({
                 'q' : "'1STx7_sT-bQI9v_ZH3ui6ksc6Lc0VbkQE' in parents",
-                "fields" : "files/webViewLink , files/name, files/id"
+                "fields" : "files/webViewLink , files/name, files/id",
+                "orderBy": "createdTime desc"
             })
             .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                //console.log("Response", response.result.files);
+               
                 createList(response)
             },
             function(err) { console.error("Execute error", err); });
@@ -67,12 +64,7 @@
             
         }
         
-        function GoToPage(id,name){
-            
-            //sessionStorage.setItem("SelectedArticleId", id);
-            let queryString = "?id="+id+"&name="+ name;
-            window.location.href = "/logpost/MainPostHolder.html"+ queryString;
-        }
+        
 
        
         //requestAnimationFrame(createList);

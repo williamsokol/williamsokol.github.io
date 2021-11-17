@@ -1,6 +1,6 @@
 //things to do on start of adding script here:
 
-// include google api
+//include google api
 // var script = document.createElement('script');
 // script.type = 'text/javascript';
 // script.src = 'https://apis.google.com/js/api.js';
@@ -123,4 +123,11 @@ function changeCss(doc) {
 
 }
 
+// this will go to a pagme based on it's google doc id
+function GoToPage(id,name = "err no name"){           
+    //sessionStorage.setItem("SelectedArticleId", id);
+    let queryString = "?id="+id+"&name="+ name;
+    window.location.href = "/logpost/MainPostHolder.html"+ queryString;
+}
+//sdads
 

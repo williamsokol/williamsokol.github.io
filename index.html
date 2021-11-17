@@ -15,7 +15,11 @@
 
 		<title>William's Website</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<!--		
 		<script type="text/javascript" src="JsScripts/PostLoader.js"></script>
+		-->
+		<script src="https://apis.google.com/js/api.js"></script>
+		<script type="text/javascript" src="/JsScripts/DriveArticles.js"></script>
 		
 	</head>
 	<body>
@@ -61,39 +65,57 @@
 
 
 		<script>
-        var i;
-        var htmlstring;
-        var dothtmls;
-        thing = new Array;
+        //var i;
+        //var htmlstring;
+        //var dothtmls;
+        //thing = new Array;
         
+		document.addEventListener("googleLoggedin", function(e){
+            var test = initArticles();
+        });
+        
+        function initArticles() {
+            gapi.client.drive.files.list({
+                'q' : "'1STx7_sT-bQI9v_ZH3ui6ksc6Lc0VbkQE' in parents",
+                "fields" : "files/webViewLink , files/name, files/id"
+            })
+            .then(function(response) {
+               
+                createList(response)
+            },
+            function(err) { console.error("Execute error", err); });
+        }
 
-
-        function createList()
+        function createList(response)
         {
-            thing = loadDoc("logpost");
-            r = Math.floor(Math.random() * thing.length);
-            
-			console.log(r);
-			DisplayPost(thing[0].postlist,thing[0].posttimes);
-			RandomPost(thing[r].postlist)
-        }
-
-        function DisplayPost(postname,posttime){
-            
-            var newPost = document.getElementById("LatestPost");
 			
+			r = Math.floor(Math.random() * response.result.files.length);
             
-            newPost.innerHTML = '<h1 >Latest Thing!<a href="logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="logpost/'+ postname +'" ></iframe>';
-        }
-		function RandomPost(postname){
-            
-           
-			var randPost = document.getElementById("RandPost");
-            
-            randPost.innerHTML = '<h1 >Random Thing!<a href="logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="logpost/'+ postname +'" ></iframe>';
+			
+            DisplayPost(response.result.files[0].id, response.result.files[0].name);
+			//DisplayPost(thing[0].postlist,thing[0].posttimes);
+			RandomPost(response.result.files[r].id, response.result.files[r].name);
         }
 
-        requestAnimationFrame(createList);
+        function DisplayPost(id,name){
+            var postURL = "https://docs.google.com/document/d/"+id+"/pub"
+            var newPost = document.getElementById("LatestPost"); 
+			console.log (newPost);
+            //newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href="javascript:fetchHTMLPage(`'+id+'`);">go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
+            newPost.innerHTML = '<div class="box"><h1 > Latest Article <a href="javascript:GoToPage(`'+id+'`,`'+name+'`)">go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
+   
+        }
+		function RandomPost(id,name){  
+			var postURL = "https://docs.google.com/document/d/"+id+"/pub"
+			var newPost = document.getElementById("RandPost");
+            
+			console.log (newPost);
+            //newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href="javascript:fetchHTMLPage(`'+id+'`);">go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
+            newPost.innerHTML = '<div class="box"><h1 > Random Article! <a href="javascript:GoToPage(`'+id+'`,`'+name+'`)">go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
+   
+
+            //newPost.innerHTML = '<h1 >Random Thing!<a href="logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="logpost/'+ postname +'" ></iframe>';
+        }
     </script>
 
 
