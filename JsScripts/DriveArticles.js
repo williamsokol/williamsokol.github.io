@@ -95,8 +95,9 @@ function turnHTMLToUrl(html) {
     
     doc.documentElement.innerHTML =  html
 
-    //console.log(doc.documentURI);
+    //just fixing little things up
     changeCss(doc);
+    changeHTML(doc);
 
     url = URL.createObjectURL(new Blob([doc.documentElement.innerHTML], {type: "text/html"}));
     // const link = document.createElement('a');
@@ -120,6 +121,16 @@ function changeCss(doc) {
     link.type = "text/css";
     // add css to doc
     doc.getElementsByTagName( "head" )[0].appendChild( link );
+
+}
+function changeHTML(doc) {
+    // do it by adding a css file to script
+    //get css file
+    var base = doc.createElement( "base" );
+    base.target = "_blank";
+    
+    // add css to doc
+    doc.getElementsByTagName( "head" )[0].appendChild( base );
 
 }
 
