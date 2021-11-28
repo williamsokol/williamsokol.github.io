@@ -65,7 +65,8 @@ function initClient() {
 function execute() {
     return gapi.client.drive.files.list({
         'q' : "'1STx7_sT-bQI9v_ZH3ui6ksc6Lc0VbkQE' in parents",
-        "fields" : "files/webViewLink , files/name, files/id"
+        "fields" : "files/webViewLink , files/name, files/id",
+        "orderBy": "createdTime desc"
     })
         .then(function(response) {
         // Handle the results here (response.result has the parsed body).
@@ -76,17 +77,12 @@ function execute() {
 }
 function fetchHTMLPage(id){
     //console.log(id);
-    gapi.client.script.scripts.run({
-        'scriptId': "AKfycbycGRSXL5kupueeofpCHQy6JwWU2HWuprFeSkG9NcZkTksqkZPpcHd0tg2Ik0fbDBXIcg",
-        'resource': {
-        'function': 'getGoogleDocumentAsHTML',
-        'parameters':[
-          id
-        ]
-        }
+    return gapi.client.drive.files.export({
+        'fileId': id,
+        'mimeType': 'text/html'
       }).then(function(response){
           console.log(response.result);
-          turnHTMLToUrl(response.result.response.result);
+          turnHTMLToUrl(response.body);
       });
 }
 
