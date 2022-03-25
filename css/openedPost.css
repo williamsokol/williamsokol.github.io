@@ -11,14 +11,14 @@ div{
 }
 
 body{
-    background-color: #292929;
+    background-color: #292929 !important;
     background-image: url(../realBackground.png);
     
     text-align: center;
 }
 
 h1 {
-    font-size:   7em;
+    font-size:   4em;
     text-align: center;
 }
 

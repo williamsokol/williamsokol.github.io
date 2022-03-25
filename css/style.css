@@ -19,7 +19,7 @@
 }
 header{
     
-    background-image: url(../Background.jpg);
+    background-image: url(/Images/Background.jpg);
     height: 100vh;
     
     background-size: cover;
@@ -75,7 +75,7 @@ ul li a:hover{
 
 .logo img{
     float: left;
-    width:  150px;
+    width:  200px;
     height: auto;
     
 }
