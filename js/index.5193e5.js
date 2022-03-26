@@ -26,7 +26,7 @@ wl.addAnimation($('.un13'), "2.00s", "0.00s", 1, 100);
 wl.addAnimation($('.un15'), "3.00s", "0.00s", 1, 100);
 wl.addAnimation($('.un16'), "1.00s", "3.00s", 1, 100);
 wl.addAnimation($('.un18'), "1.00s", "2.00s", 1, 100);
-wl.addAnimation($('.un19'), "1.00s", "1.00s", 1, 100);
+wl.addAnimation($('.un19'), "1.00s", "0.00s", 1, 100);
 wl.start();
 if(location.hash){var e=location.hash.replace("#",""),o=function(){var t=document.querySelectorAll('[name="'+e+'"]')[0];t&&t.scrollIntoView(),"complete"!=document.readyState&&setTimeout(o,100)};o()}
 
