@@ -1,126 +1,89 @@
-<!DocType html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3LL6HLS1X"></script>
-		<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
 
-		gtag('config', 'G-Z3LL6HLS1X');
-		</script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
 
-		<!--End of Global site tag (gtag.js) - Google Analytics -->
+<body>
 
-		<title>William's Website</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<!--		
-		<script type="text/javascript" src="JsScripts/PostLoader.js"></script>
-		-->
-		<script src="https://apis.google.com/js/api.js"></script>
-		<script type="text/javascript" src="/JsScripts/DriveArticles.js"></script>
-		
-	</head>
-	<body>
-		
+  <div class="item">
+    <ul id="contentList">
 
-		<header>
-			<div class="main">
-				
-			<ul>
-				
-				<li><a href = "Pages/Tools.html"> Tools </a></li>
-				<li><a href = "Pages/AI.html"> My AI's </a></li>
-				<li><a href = "Pages/Logs.html"> Logs </a></li>
-				<li><a href = "Pages/GamesList.html"> My Games </a></li>
-				<li><a href = "Pages/About.html"> About </a></li>
-				<li><a href = "Pages/Contact.html"> Contact </a></li>
-				
-			</ul>
-			
-			</div>
+      <li><a href="https://williamsokol.github.io/Pages/Tools.html">Tools</a></li>
+      <li><a href="https://williamsokol.github.io/Pages/AI.html"> My AI's </a></li>
+      <li><a href="https://williamsokol.github.io/Pages/Logs.html"> Logs </a></li>
+      <li><a href="https://williamsokol.github.io/Pages/GamesList.html"> My Games </a></li>
+      <li><a href="https://williamsokol.github.io/Pages/About.html"> About </a></li>
+      <li><a href="https://williamsokol.github.io/Pages/Contact.html"> Contact </a></li>
 
-			<div class="title">
-				<h1>William Sokol's Website</h1>
-			</div>	
+    </ul>
+    <div id="titleText">
+      <h1>William's Website</h1>
 
-			<div class="logo">
-				<img src="/Images/logo.gif" >
-			</div>		
-		</header>
+    </div>
+    <div id="summary">
 
-		<div class="things">
-			<div class="spacer">
-				<div class="box" id="LatestPost">
-				</div>
-			</div>
+      <div class="bio">
+        <div>
+          <img src="images/self.png" </img>
+          <div class="BioLinks">
+            <li><a href=""> <img src="images/Logos/LinkedIn.png"> </a></li>
+            <li><a href=""> <img src="images/Logos/Github.png"> </a></li>
+            <li><a href=""> <img src="images/Logos/Itch.io.png"> </a></li>
+            <li><a href=""> <img src="images/Logos/Youtube.png"> </a></li>
+          </div>
+        </div>
+        <p>Hi my name is William</p>
+      </div>
+    </div>
 
-			<div class="spacer">
-				<div class="box" id="RandPost">
-				</div>
-			</div>
-		</div>
-
-
-
-		<footer>footer</footer>
-
-
-		<script>
-        //var i;
-        //var htmlstring;
-        //var dothtmls;
-        //thing = new Array;
-        
-		document.addEventListener("googleLoggedin", function(e){
-            var test = initArticles();
-        });
-        
-        function initArticles() {
-            gapi.client.drive.files.list({
-                'q' : "'1STx7_sT-bQI9v_ZH3ui6ksc6Lc0VbkQE' in parents",
-                "fields" : "files/webViewLink , files/name, files/id"
-            })
-            .then(function(response) {
-               
-                createList(response)
-            },
-            function(err) { console.error("Execute error", err); });
-        }
-
-        function createList(response)
-        {
-			
-			r = Math.floor(Math.random() * response.result.files.length);
+    <script src="selectProject.js"></script>
+    <div id="projects" class="catagory">
+      <h2 id="projectbtn" class="btn">Projects</h2>
+      <h2 id="slash">/<h2>
+          <h2 id="gamebtn" class="btn">Games</h2>
+          <div id="projList">
+            <div class="selectButtons" onclick="test()"><img src="https://i.imgur.com/qHIIfTH.png"></div>
             
-			
-            DisplayPost(response.result.files[0].id, response.result.files[0].name);
-			//DisplayPost(thing[0].postlist,thing[0].posttimes);
-			RandomPost(response.result.files[r].id, response.result.files[r].name);
-        }
+            <div><iframe class="youtubeVideo" src="https://www.youtube.com/embed/Yn48tVaRN6g"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe></div>
 
-        function DisplayPost(id,name){
-            var postURL = "https://docs.google.com/document/d/"+id+"/pub"
-            var newPost = document.getElementById("LatestPost"); 
-			console.log (newPost);
-            //newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href="javascript:fetchHTMLPage(`'+id+'`);">go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
-            newPost.innerHTML = '<div class="box"><h1 > Latest Article <a href="javascript:GoToPage(`'+id+'`,`'+name+'`)">go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
-   
-        }
-		function RandomPost(id,name){  
-			var postURL = "https://docs.google.com/document/d/"+id+"/pub"
-			var newPost = document.getElementById("RandPost");
-            
-			console.log (newPost);
-            //newpost.innerHTML = '<div class="box"><h1 >'+ name +'<a href="javascript:fetchHTMLPage(`'+id+'`);">go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
-            newPost.innerHTML = '<div class="box"><h1 > Random Article! <a href="javascript:GoToPage(`'+id+'`,`'+name+'`)">go to page</a></h1><hr/><iframe name= '+id+' src='+postURL+'?embedded=true ></iframe></div>';
-   
+            <div class="selectButtons leftButton"><img src="https://i.imgur.com/qHIIfTH.png"></div>
+          </div>
+    </div>
 
-            //newPost.innerHTML = '<h1 >Random Thing!<a href="logpost/'+ postname +'">go to page</a></h1><hr/><iframe src="logpost/'+ postname +'" ></iframe>';
-        }
-    </script>
+    <div id="Resume"class="catagory">
+      <h2>Software Engineer</h2>
+      <p>
+        You can see my full qualifications <br/>in the resume here: <a href="">resume</a>
+      </p>
+    </div>
+    <div id="contact" class="catagory">
+      <h2>Contact</h2>
+      <p>
+        Feel free to contact me at: williamsokol0@gmail.com
+        <br /> <br />
+        I like to see what other people are involved in <br> and help when I can!
+      </p>
+    </div>
+  </div>
 
 
-	</body>
+
+  
+
+  <!--
+  This script places a badge on your repl's full-browser view back to your repl's cover
+  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
+  teal, blue, blurple, magenta, pink!
+  <script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script>
+  -->
+</body>
+
 </html>
