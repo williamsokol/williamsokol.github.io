@@ -9,7 +9,7 @@ async function GetCards() {
   projFrameList = b.map(v=>v.download_url);
   console.log(projFrameList)
 }
-async function test() { 
+async function changeCard() { 
   //console.(project)
   index = (index + 1)%(projFrameList.length);
   var a = await fetch(projFrameList[index])
@@ -17,13 +17,15 @@ async function test() {
   var html = await a.text()
   console.log(html.length)
   var card = document.getElementById('card');
-  if(html.length > 100){
+  if(html.length > 100)
+  {  
     var doc = document.implementation.createHTMLDocument("New Document");
     doc.documentElement.innerHTML = html
     
     var blobContent = new Blob([doc.documentElement.innerHTML], { type: "text/html" })
     card.src = URL.createObjectURL(blobContent);
-  }else{
+  }else
+  {  
     card.src = html;
   }
   console.log(index)
