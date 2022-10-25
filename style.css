@@ -156,7 +156,7 @@ img{
 
   display: grid;
   grid-template-columns: 1fr min(70%,560px) 1fr;
-  grid-auto-rows: auto auto;
+  grid-template-rows: auto auto;
 }
 .youtubeVideo{
   
@@ -167,7 +167,11 @@ img{
 #cardDescription{
   grid-row: 2 / 3;
   grid-column: -3 / -2;
-  background-color: #00ff2a;
+  
+}
+#cardDescription iframe{
+  height: 100%;
+  color: white;
 }
 .selectButtons{
   margin: auto;

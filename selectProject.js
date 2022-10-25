@@ -17,18 +17,23 @@ async function GetCards() {
     
     //console.log(card)
   }
-  console.log(projFrameList[1].find(v => v.name =="Card.html"))
+  console.log(projFrameList)
   //console.log(projFrameList[1].find(v=> v.name == "Description.html"))
 }
 async function changeCard() { 
   //console.(project)
   index = (index + 1)%(projFrameList.length);
-  var a = await fetch(projFrameList[index])
-  b = await a.json()
   
-  var html = await
+  var tempa = projFrameList[index].find(v=> v.name == "Card.html")
+  var tempb = await fetch(tempa.download_url);
+  var html = await tempb.text();
+
+  tempa = projFrameList[index].find(v=> v.name == "Description.html");
+  tempb = await fetch(tempa.download_url);
+  var descript = await tempb.text()
+
   
-  console.log(html.length)
+  console.log(descript);
   var card = document.getElementById('card');
   var cardDescription = document.getElementById('cardDescription');
   if(html.length > 100)
@@ -38,7 +43,7 @@ async function changeCard() {
   {  
     card.src = html;
   }
-  cardDescription.src = 
+  cardDescription.firstElementChild.src = HtmlToBlob(descript)
   console.log(index)
   
 }
