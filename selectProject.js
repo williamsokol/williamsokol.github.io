@@ -2,6 +2,14 @@ var projFrameList = new Array();
 var index = 0;
 
 //https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/Pages/ProjectFrames?ref=websiteV2
+// test()
+// async function test(){
+//   var pages = await fetch('./Pages')
+//   var b = await pages.text()
+//   console.log(b)
+// }
+
+
 GetCards();
 async function GetCards() {
   var pages = await fetch('https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/Pages/ProjectFrames?ref=websiteV2')
@@ -20,9 +28,10 @@ async function GetCards() {
   console.log(projFrameList)
   //console.log(projFrameList[1].find(v=> v.name == "Description.html"))
 }
-async function changeCard() { 
+async function changeCard(dir) { 
   //console.(project)
-  index = (index + 1)%(projFrameList.length);
+  index = (index + dir)%(projFrameList.length);
+  index = index < 0? projFrameList.length-1 : index;
   
   var tempa = projFrameList[index].find(v=> v.name == "Card.html")
   var tempb = await fetch(tempa.download_url);
@@ -33,7 +42,7 @@ async function changeCard() {
   var descript = await tempb.text()
 
   
-  console.log(descript);
+  //console.log(descript);
   var card = document.getElementById('card');
   var cardDescription = document.getElementById('cardDescription');
   if(html.length > 100)

@@ -37,7 +37,11 @@
             <li><a href="https://www.youtube.com/channel/UC8QhqonMUtysWEJ5-jfsNVQ/featured"> <img src="images/Logos/Youtube.png"> </a></li>
           </div>
         </div>
-        <p>Hi my name is William</p>
+        <p style="font-size: min(22px,3vw);">
+          Welcome to my site! <br/><br/>
+          I like to program, so I made this website to collect and share all my projects.<br/>
+          I still am tweaking and adding a lot still, so some features might be halfway finshed.
+        </p>
       </div>
     </div>
 
@@ -47,14 +51,14 @@
       <h2 id="slash">/<h2>
           <h2 id="gamebtn" class="btn">Games</h2>
           <div id="projList">
-            <div class="selectButtons" onclick="changeCard()"><img src="https://i.imgur.com/qHIIfTH.png"></div>
+            <div class="selectButtons" onclick="changeCard(1)"><img src="https://i.imgur.com/qHIIfTH.png"></div>
             
             <div><iframe id="card" class="youtubeVideo" src="https://www.youtube.com/embed/Yn48tVaRN6g"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe></div>
 
-            <div class="selectButtons leftButton"><img src="https://i.imgur.com/qHIIfTH.png"></div>
+            <div class="selectButtons leftButton" onclick="changeCard(-1)"><img src="https://i.imgur.com/qHIIfTH.png"></div>
             <div id="cardDescription"><iframe  class="youtubeVideo" src="https://example.com/"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
