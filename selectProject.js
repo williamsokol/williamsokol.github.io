@@ -10,7 +10,12 @@ var index = 0;
 // }
 
 
-GetCards();
+Start()
+async function Start(){
+  await GetCards();
+  // change initial card
+  changeCard(0);
+}
 async function GetCards() {
   var pages = await fetch('https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/Pages/ProjectFrames?ref=websiteV2')
   var b = await pages.json()
@@ -25,6 +30,7 @@ async function GetCards() {
     
     //console.log(card)
   }
+  
   console.log(projFrameList)
   //console.log(projFrameList[1].find(v=> v.name == "Description.html"))
 }
