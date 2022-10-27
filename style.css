@@ -3,6 +3,7 @@ html, body {
   font-family: Comfortaa,sans-serif;
   height: 100%;
   width: 100%;
+  margin: auto;
   background-color: black;
 }
 h1{
