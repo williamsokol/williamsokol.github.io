@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width">
   <title>replit</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <script>
+    function resizeIframe(obj) {
+      obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+    }
+  </script>
 </head>
 
 <body>
@@ -60,7 +66,7 @@
 
             <div class="selectButtons leftButton" onclick="changeCard(-1)"><img src="https://i.imgur.com/qHIIfTH.png"></div>
             <div id="cardDescription"><iframe  class="youtubeVideo" src="https://example.com/"
-                title="YouTube video player" frameborder="0"
+                title="YouTube video player" frameborder="0" scrolling="no" onclick="resizeIframe(this)"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe></div>
           </div>
@@ -69,7 +75,7 @@
     <div id="Resume"class="catagory">
       <h2>Software Engineer</h2>
       <p>
-        You can see my full qualifications <br/>in the resume here: <a href="">resume</a>
+        You can see my full qualifications <br/>in the resume here: <a href="https://docs.google.com/document/d/e/2PACX-1vQoEQW-S7r0KEoZtAqkWPXt0Jo4k7vIU6q41bfH8dQiSTqGXmlUJDJlEr5gme1CVw/pub">resume</a>
       </p>
     </div>
     <div id="contact" class="catagory">
