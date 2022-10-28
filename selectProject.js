@@ -56,7 +56,7 @@ async function changeCard(dir) {
     card.src = HtmlToBlob(html);
   }else
   {  
-    card.src = html;
+    card.src = html + "?" + Date();
   }
   cardDescription.firstElementChild.src = HtmlToBlob(descript)
   console.log(index)
