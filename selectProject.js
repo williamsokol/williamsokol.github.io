@@ -20,7 +20,7 @@ async function GetCards() {
   var pages = await fetch('https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/Pages/ProjectFrames?ref=websiteV2',{
     headers: {
       Accept: "application/vnd.github+json",
-      Authorization: "Bearer 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"
+      Authorization: "Bearer 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"
     }
   })
   var b = await pages.json()
