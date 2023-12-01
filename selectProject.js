@@ -19,12 +19,14 @@ async function Start(){
 async function GetCards() {
   var pages = await fetch('https://api.github.com/repos/williamsokol/williamsokol.github.io/contents/Pages/ProjectFrames?ref=websiteV2',{
     headers: {
-      Accept: "application/vnd.github+json",
-      Authorization: atob("QmVhcmVyIGdpdGh1Yl9wYXRfMTFBSUdQWkhBMDBpT2Vwdm9hdEhXS19hVzBQZktOZWlIQWJoTGg1a1ljTHhWb1d1TTAzbTV5aHM2WWN2UkpXcWlpRklRQkxQQzJMdjJKSWlLbw==")
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+      Authorization: atob("Z2hwX3lXeGhFWkxkc1JZOGRWcUZLcUZPdFlCdm15YUhYOTI3b0NicQ==")
     }
   })
   var b = await pages.json()
   
+  console.log(b)
+
   //projFrameList = b.map(v=>v.url);
   for(var i=0; i<b.length; i++){
     var temp = b[i].url
@@ -33,14 +35,15 @@ async function GetCards() {
     card = await card.json();
     projFrameList.push(card)
     
-    //console.log(card)
+    
   }
   
   console.log(projFrameList)
   //console.log(projFrameList[1].find(v=> v.name == "Description.html"))
 }
+
 async function changeCard(dir) { 
-  //console.(project)
+  console.log("project" + index)
   index = (index + dir)%(projFrameList.length);
   index = index < 0? projFrameList.length-1 : index;
   
