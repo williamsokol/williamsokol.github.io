@@ -25,7 +25,7 @@ async function GetCards() {
   })
   var b = await pages.json()
   
-  console.log(b)
+  // console.log(b)
 
   //projFrameList = b.map(v=>v.url);
   for(var i=0; i<b.length; i++){
@@ -38,12 +38,12 @@ async function GetCards() {
     
   }
   
-  console.log(projFrameList)
+  // console.log(projFrameList)
   //console.log(projFrameList[1].find(v=> v.name == "Description.html"))
 }
 
 async function changeCard(dir) { 
-  console.log("project" + index)
+  // console.log("project" + index)
   index = (index + dir)%(projFrameList.length);
   index = index < 0? projFrameList.length-1 : index;
   
@@ -67,7 +67,7 @@ async function changeCard(dir) {
     card.src = html + "?" + Date();
   }
   cardDescription.firstElementChild.src = HtmlToBlob(descript)
-  console.log(index)
+  // console.log(index)
   
 }
 
